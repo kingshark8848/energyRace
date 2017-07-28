@@ -13,6 +13,10 @@
 
 $app->get('/', function () use ($app) {
 //    return $app->version();
-    return view('index');
+    return view('home');
+});
+
+$app->post('/result', function () use ($app) {
+    return view('result');
 });
 

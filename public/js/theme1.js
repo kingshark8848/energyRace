@@ -1,7 +1,5 @@
 // Freelancer Theme JavaScript
 (function($) {
-    $('#tip-modal').modal('show');
-
     "use strict"; // Start of use strict
 
     // jQuery for page scrolling feature - requires jQuery Easing plugin

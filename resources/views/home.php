@@ -15,7 +15,7 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="css/theme1.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -94,7 +94,7 @@
             </div>
             <div class="row">
 
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post" action="/result">
                     <div class="form-group">
 <!--                            <label for="nmi" class="col-lg-2 control-label">Input Your NMI</label>-->
                         <div class="col-lg-2 col-xs-2"></div>
@@ -230,7 +230,7 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
+                        <h3>About EnergyRace</h3>
                         <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
                     </div>
                 </div>
@@ -289,7 +289,14 @@
     <script src="js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/freelancer.min.js"></script>
+    <script src="js/theme1.min.js"></script>
+
+    <script>
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            $('#tip-modal').modal('show');
+        });
+    </script>
 
 </body>
 

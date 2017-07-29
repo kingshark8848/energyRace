@@ -19,6 +19,9 @@ html,body { height:100%; }
 .large{
     font-size: 25px;
 }
+.small{
+    font-size: 15px;
+}
 .rating_percent{
     color: blue;
     font-size:30px;
@@ -47,8 +50,8 @@ html,body { height:100%; }
 .sponsor_item a:hover, .sponsor_item a:visited, .sponsor_item a:focus{
     text-decoration: none;
 }
-p.small{
-    font-size: 15px;
+.thumbnail{
+    padding: 15px;
 }
 .thumbnail:hover{
     background-color: rgba(128, 128, 128, 0.06);
@@ -64,4 +67,55 @@ p.small{
 }
 .caption_full p{
     font-size:25px;
+}
+
+#position_suburb{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+    background-color: rgba(24, 188, 156, 0.11);
+    cursor: pointer;
+}
+#position_suburb:hover{
+    background-color: rgba(24, 188, 156, 0.41);
+}
+#position_suburb_show{
+    color: #2e6da4;
+}
+#compare_yourself{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+    background-color: rgba(255, 165, 0, 0.25);
+    cursor: pointer;
+}
+#compare_yourself:hover{
+    background-color: rgba(255, 165, 0, 0.5);
+}
+#compare_yourself_show{
+    color: #94270c;
+}
+#recommend{
+    margin-top: 50px;
+}
+.recommend{
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.show_tips{
+    border: 1px solid black;
+    margin:10px;
+    padding: 15px;
+}
+ul{
+    font-size: 20px;
 }

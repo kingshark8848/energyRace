@@ -52,7 +52,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="list-group">
                     <a href="/race" class="list-group-item ">Let's Race</a>
                     <a href="/info" class="list-group-item active">More Info</a>
@@ -60,85 +60,68 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="thumbnail content_body_1">
                     <h3>Data in your area</h3>
-                    <img class="img-responsive" src="img/line_chart.jpg" alt="">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img class="img-responsive" src="img/line_chart.jpg" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <p id="position_suburb" class="large">What position are you in your suburb?</p>
+                            <h2 id="position_suburb_show" class="center" style="display: none">TOP 20%</h2>
+                        </div>
+                    </div>
 
-                    <div class="caption-full">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">Product Name</a>
-                        </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
                 </div>
 
                 <div class="well content_body_2">
                     <h3>Data compared to yourself</h3>
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
                     <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        <div class="col-md-8">
+                            <img class="img-responsive" src="img/column_chart1.png" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <p id="compare_yourself" class="large">Have you improved comparing to your last year?</p>
+                            <h2 id="compare_yourself_show" class="center" style="display: none">10% better!</h2>
                         </div>
                     </div>
 
-                    <hr>
+                </div>
 
+                <div class="recommend">
+                    <p class="large center">Recommendation</p>
                     <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
+                        <div class="col-md-3 col-md-offset-1 show_tips">
+                            <a href="/category">
+                                <img class="img-responsive" src="img/recommend1.png">
+                                <p>See how much you could improve by setting up a solar board.</p>
+                            </a>
                         </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        <div class="col-md-3 show_tips">
+                            <a rel="lightbox" href="#tips1">
+                                <img class="img-responsive" src="img/recommend2.png">
+                                <p>Tips for saving energy.</p>
+                            </a>
                         </div>
-                    </div>
+                        <div class="col-md-3 show_tips">
+                            <a rel="lightbox" href="#tips2">
+                                <img class="img-responsive" src="img/recommend3.png">
+                                <p>Tips for upgrading your machine.</p>
+                            </a>
+                        </div>
 
+                        <div id="tips1" style="display: none;">
+                            <h2>energy tips</h2>
+                            <ul><li>Wash your clothes in cold water</li>
+                                <li>Remove dust from the back of your fridge</li>
+                                <li>Use energy saving light bulbs</li>
+                            </ul>
+                        </div>
+                        <div id="tips2" style="display: none;">
+                            <h2>upgrade your machines</h2>
+                            <ul><li>Choose  electric devices with a good star rating</li></ul>
+                        </div>
                 </div>
 
             </div>

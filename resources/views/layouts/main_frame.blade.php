@@ -17,6 +17,7 @@
     <!-- Theme CSS -->
     <link href="css/theme1.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet" type="text/css">
+    <link href="css/orangebox.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -50,6 +51,9 @@
 
 <!-- jQuery -->
 <script src="vendor/jquery/jquery.min.js"></script>
+<script src="js/jquery-latest.min.js"></script>
+<script src="js/orangebox.min.js"></script>
+<script src="js/site.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -37,6 +37,7 @@
 @endsection
 
 @section('bottom_script')
+
     <script>
         new Vue({
             el: '#my-vue',
@@ -52,15 +53,16 @@
                 score_zoom: 1,
             },
             mounted() {
-                let vm = this;
-                vm.loadChart();
-                vm.loadLine();
 
+                let vm = this;
+                vm.loadLine();
+                vm.loadChart();
             },
             methods: {
                 loadChart: function () {
-                    var ctx1 = document.getElementById('myChart1').getContext('2d');
-                    var myDoughnutChart1 = new Chart(ctx1, {
+
+                    let ctx1 = document.getElementById('myChart1').getContext('2d');
+                    let myPieChart = new Chart(ctx1, {
                         type: 'pie',
                         data: {
                             datasets: [{
@@ -95,23 +97,24 @@
                             tooltips: {
                                 callbacks: {
                                     label: function(tooltipItem, data) {
-                                        var dataset = data.datasets[tooltipItem.datasetIndex];
-                                        var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                                        let dataset = data.datasets[tooltipItem.datasetIndex];
+                                        let total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
                                             return previousValue + currentValue;
                                         });
-                                        var currentValue = dataset.data[tooltipItem.index];
-                                        var precentage = Math.floor(((currentValue/total) * 100)+0.5);
+                                        let currentValue = dataset.data[tooltipItem.index];
+                                        let precentage = Math.floor(((currentValue/total) * 100)+0.5);
                                         return precentage + "%";
                                     }
                                 }
                             }
                         }
                     });
+
                 },
 
                 loadLine: function () {
-                    var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    var config = {
+                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let config = {
                         type: 'line',
                         data: {
                             labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -178,10 +181,8 @@
                         }
                     };
 
-                    window.onload = function() {
-                        var ctx2 = document.getElementById("myChart2").getContext("2d");
-                        window.myLine = new Chart(ctx2, config);
-                    };
+                    let ctx2 = document.getElementById("myChart2").getContext("2d");
+                    let myLine = new Chart(ctx2, config);
                 }
             }
         })

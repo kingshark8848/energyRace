@@ -30,6 +30,31 @@
         <div class="row">
             <div class="col-xs-6">
 
+                <div class="col-xs-10">
+
+                    <div v-for="item in top_persons" v-bind:key="top_persons.key" class="row">
+
+                        <svg width="50" height="20">
+                            <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle">
+                                top @{{item.rank}}
+                            </text>
+                        </svg>
+
+                        <svg :width="item[ranking_attr]*score_zoom" height="20">
+                            <rect :width="item[ranking_attr]*score_zoom" height="20" :style="{fill: 'blue'}"/>
+                        </svg>
+
+                        <svg width=50 height="20">
+                            <rect width=50 height="20" style="fill:rgb(255,255,255);fill-opacity:0;"/>
+                            <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle">
+                                @{{item[ranking_attr]}}
+                            </text>
+                        </svg>
+
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -46,20 +71,20 @@
                 his_items: [],
 
                 my_date: "",
-                items: [],
+                top_persons: [{'key':1,'val': 476, 'rank':1}, {'key':2,'val': 400, 'rank':2}, {'key':3,'val': 532, 'rank':3}],
                 old_items: [],
                 animate_items: [],
-                ranking_attr: "",
+                ranking_attr: "val",
                 score_zoom: 1,
             },
             mounted() {
 
                 let vm = this;
                 vm.loadLine();
-                vm.loadChart();
+                vm.loadPieChart();
             },
             methods: {
-                loadChart: function () {
+                loadPieChart: function () {
 
                     let ctx1 = document.getElementById('myChart1').getContext('2d');
                     let myPieChart = new Chart(ctx1, {
@@ -183,6 +208,60 @@
 
                     let ctx2 = document.getElementById("myChart2").getContext("2d");
                     let myLine = new Chart(ctx2, config);
+                },
+
+                loadBarChart: function () {
+                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let color = Chart.helpers.color;
+                    let barChartData = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        datasets: [{
+                            label: 'Dataset 1',
+                            backgroundColor: color('red').alpha(0.5).rgbString(),
+                            borderColor: 'red',
+                            borderWidth: 1,
+                            data: [
+                                400,
+                                378,
+                                678,
+                                564,
+                                982,
+                                302,
+                                700,
+                            ]
+                        }, {
+                            label: 'Dataset 2',
+                            backgroundColor: color('blue').alpha(0.5).rgbString(),
+                            borderColor: 'blue',
+                            borderWidth: 1,
+                            data: [
+                                60,
+                                178,
+                                378,
+                                264,
+                                782,
+                                402,
+                                600,
+                            ]
+                        }]
+
+                    };
+
+                    let ctx = document.getElementById("canvas").getContext("2d");
+                    window.myBar = new Chart(ctx, {
+                        type: 'bar',
+                        data: barChartData,
+                        options: {
+                            responsive: true,
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Bar Chart'
+                            }
+                        }
+                    });
                 }
             }
         })

@@ -61,9 +61,10 @@
             </div>
 
             <div class="col-md-9">
+                <div class="thumbnail content_body_1">
+                    <h3>Data in your area</h3>
+                    <img class="img-responsive" src="img/line_chart.jpg" alt="">
 
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">$24.99</h4>
                         <h4><a href="#">Product Name</a>
@@ -87,8 +88,8 @@
                     </div>
                 </div>
 
-                <div class="well">
-
+                <div class="well content_body_2">
+                    <h3>Data compared to yourself</h3>
                     <div class="text-right">
                         <a class="btn btn-success">Leave a Review</a>
                     </div>

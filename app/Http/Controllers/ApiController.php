@@ -19,15 +19,18 @@ class ApiController extends Controller
 
     /**
      * @param Request $request
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getMyDailyElectricityConsumption(Request $request)
     {
+//        $startDayOfLastMonth = Carbon::createFromFormat('Y-m-d', $p_date)->subMonth()->startOfMonth()->toDateString();
+
         // validation
         $this->validate($request, [
             'p_date' => 'sometimes|required|date_format:Y-m-d',
         ]);
 
+        // get statistic date
         if ($request->exists('p_date')){
             $p_date = $request->input('p_date');
         }
@@ -35,16 +38,10 @@ class ApiController extends Controller
             $p_date = config('app.cur_date_str');
         }
 
-        $startDayOfLastMonth = Carbon::createFromFormat('Y-m-d', $p_date)->subMonth()->startOfMonth()->toDateString();
-//        dd($startDayOfLastMonth);
-
         $cur_resident_id = config('app.cur_resident_id');
 
+        // init return data
         $data = [];
-
-//        $results = DB::select(DB::raw("SELECT SUM(daily_WH) as last_month_WH FROM v_electricity_daily
-//        WHERE type='general' AND respondent_no=? AND MONTH(output_date)=MONTH(?)"),
-//            [$cur_resident_id, $p_date])[0];
 
         // current day self data
         $curDayMe = DB::select(DB::raw("SELECT * FROM v_electricity_daily 
@@ -75,4 +72,41 @@ class ApiController extends Controller
 
         return response()->json($data);
     }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getMyMonthElectricityConsumption(Request $request)
+    {
+        // validation
+        $this->validate($request, [
+            'p_date' => 'sometimes|required|date_format:Y-m-d',
+        ]);
+
+        if ($request->exists('p_date')){
+            $p_date = $request->input('p_date');
+        }
+        else{
+            $p_date = config('app.cur_date_str');
+        }
+        $cur_resident_id = config('app.cur_resident_id');
+
+        // init return data
+        $data = [];
+
+        $myMonthData = DB::select(DB::raw("SELECT * FROM v_electricity_daily
+            WHERE type='general' AND respondent_no=? AND MONTH(output_date)=MONTH(?) AND YEAR(output_date)=YEAR(?)"),
+            [$cur_resident_id, $p_date, $p_date]);
+
+        $myMonthData = collect($myMonthData);
+        $data['my_month_data']=$myMonthData;
+
+        return response()->json($data);
+
+
+    }
+
+
 }

@@ -29,5 +29,7 @@ $app->post('/result', function () use ($app) {
 $app->group(['prefix' => 'api/v1'], function () use ($app) {
 
     $app->get('/me/daily_electricity_consumption', 'ApiController@getMyDailyElectricityConsumption');
+
+    $app->get('/me/month_consumption', 'ApiController@getMyMonthElectricityConsumption');
 });
 

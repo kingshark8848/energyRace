@@ -8,6 +8,11 @@
             padding-top: 120px;
         }
     </style>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <script src="https://unpkg.com/tween.js@16.3.4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 @endsection
 
 @section('content')
@@ -16,10 +21,12 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href='/home' ><img src="img/bulb.png" class="img-rounded" style="display: inline-block;height: 1em">EnergyRace</a>
+                <a class="navbar-brand" href='/home'><img src="img/bulb.png" class="img-rounded"
+                                                          style="display: inline-block;height: 1em">EnergyRace</a>
             </div>
 
             {{--<!-- Collect the nav links, forms, and other content for toggling -->--}}
@@ -47,7 +54,7 @@
 
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" id="my-vue">
         <div class="row"></div>
 
         <div class="row">
@@ -76,10 +83,13 @@
                 </div>
 
                 <div class="well content_body_2">
-                    <h3>Data compared to yourself</h3>
+                    <h3>Compare with yourself</h3>
+                    <p>Same month, this year vs last year</p>
                     <div class="row">
                         <div class="col-md-8">
-                            <img class="img-responsive" src="img/column_chart1.png" alt="">
+                            <div id="canvas-holder" style="width:100%">
+                                <canvas id="myCompareWithMyself"></canvas>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <p id="compare_yourself" class="large">Have you improved comparing to your last year?</p>
@@ -113,21 +123,49 @@
 
                         <div id="tips1" style="display: none;">
                             <h2>energy tips</h2>
-                            <ul><li>Wash your clothes in cold water</li>
+                            <ul>
+                                <li>Wash your clothes in cold water</li>
                                 <li>Remove dust from the back of your fridge</li>
                                 <li>Use energy saving light bulbs</li>
                             </ul>
                         </div>
                         <div id="tips2" style="display: none;">
                             <h2>upgrade your machines</h2>
-                            <ul><li>Choose  electric devices with a good star rating</li></ul>
+                            <ul>
+                                <li>Choose electric devices with a good star rating</li>
+                            </ul>
                         </div>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
     </div>
     <!-- /.container -->
+@endsection
+
+@section('bottom_script')
+
+    <script>
+        new Vue({
+            el: '#my-vue',
+            data: {
+                daily_data: {},
+                top_persons: [{'key': 1, 'val': 476, 'rank': 1}, {'key': 2, 'val': 400, 'rank': 2}, {
+                    'key': 3,
+                    'val': 532,
+                    'rank': 3
+                }],
+                ranking_attr: "val",
+                score_zoom: 1,
+            },
+            mounted() {
+                let vm = this;
+
+                Chart.defaults.global.animation.duration = 2000;
+            }
+        })
+    </script>
 @endsection

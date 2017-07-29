@@ -40,8 +40,10 @@ $app->get('/test/chart', function () use ($app) {
 // =============== data api
 $app->group(['prefix' => 'api/v1'], function () use ($app) {
 
-    $app->get('/me/daily_electricity_consumption', 'ApiController@getMyDailyElectricityConsumption');
+    $app->get('/me/electricity_e_consumption_given_day', 'ApiController@getMyEConsumptionGivenDay');
 
-    $app->get('/me/month_consumption', 'ApiController@getMyMonthElectricityConsumption');
+    $app->get('/me/daily_e_consumption_given_month', 'ApiController@getMyDailyEConsumptionGivenMonth');
+
+    $app->get('/me/month_e_consumption_given_year', 'ApiController@getMyMonthEConsumptionGivenYear');
 });
 

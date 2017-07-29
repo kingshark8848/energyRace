@@ -294,7 +294,7 @@
                 // daily data
                 $.ajax({
                     method: "GET",
-                    url: "/api/v1/me/daily_electricity_consumption?p_date=2013-02-07",
+                    url: "/api/v1/me/electricity_e_consumption_given_day?p_date=2013-02-07",
                 }).success(function( res ) {
 //                        console.log(res);
                     vm.daily_data = res;
@@ -363,7 +363,7 @@
                     });
 
                 },
-                
+
                 loadBarChartRanking: function () {
                     let vm = this;
 

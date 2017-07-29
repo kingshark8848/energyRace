@@ -19,3 +19,19 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Abbreviation
+
+# path presentation:
+- {=p}: at project root dir
+- {=public}: at public dir
+
+## Setup Environment
+{=p}`$ composer install`
+
+if you changed less file or js file, or updated npm package, please run command:
+{=public}`$ gulp`
+
+## Run Server
+
+{=p}`$ php -S localhost:8000 -t public`

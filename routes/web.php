@@ -25,6 +25,10 @@ $app->post('/result', function () use ($app) {
     return view('result');
 });
 
+$app->get('/test/chart', function () use ($app) {
+    return view('test.test_chart');
+});
+
 // =============== data api
 $app->group(['prefix' => 'api/v1'], function () use ($app) {
 

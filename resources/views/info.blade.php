@@ -84,14 +84,17 @@
 
                 <div class="well content_body_2">
                     <h3>Compare with yourself</h3>
-                    <p>Same month, this year vs last year</p>
+                    <p>Same months, this year vs last year</p>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div id="canvas-holder" style="width:100%">
                                 <canvas id="myCompareWithMyself"></canvas>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-2">
                             <p id="compare_yourself" class="large">Have you improved comparing to your last year?</p>
                             <h2 id="compare_yourself_show" class="center" style="display: none">10% better!</h2>
                         </div>
@@ -152,19 +155,127 @@
         new Vue({
             el: '#my-vue',
             data: {
-                daily_data: {},
-                top_persons: [{'key': 1, 'val': 476, 'rank': 1}, {'key': 2, 'val': 400, 'rank': 2}, {
-                    'key': 3,
-                    'val': 532,
-                    'rank': 3
-                }],
-                ranking_attr: "val",
-                score_zoom: 1,
+                month_data: {},
             },
             mounted() {
                 let vm = this;
 
                 Chart.defaults.global.animation.duration = 2000;
+
+                // month data
+                $.ajax({
+                    method: "GET",
+                    url: "/api/v1/me/month_e_consumption_given_year",
+                }).success(function( res ) {
+                    console.log(res);
+                    vm.month_data = res;
+
+                    vm.loadBarChart();
+                });
+
+
+            },
+            methods: {
+                loadBarChart: function () {
+                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let color = Chart.helpers.color;
+                    let barChartData = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        datasets: [{
+                            label: 'Dataset 1',
+                            backgroundColor: color('red').alpha(0.5).rgbString(),
+                            borderColor: 'red',
+                            borderWidth: 1,
+                            data: [
+                                400,
+                                378,
+                                678,
+                                564,
+                                982,
+                                302,
+                                700,
+                                378,
+                                678,
+                                564,
+                                982,
+                                302,
+                            ]
+                        }, {
+                            label: 'Dataset 2',
+                            backgroundColor: color('blue').alpha(0.5).rgbString(),
+                            borderColor: 'blue',
+                            borderWidth: 1,
+                            data: [
+                                60,
+                                178,
+                                378,
+                                264,
+                                782,
+                                402,
+                                600,
+                                178,
+                                378,
+                                264,
+                                782,
+                                402,
+                            ]
+                        }]
+
+                    };
+
+                    let ctx = document.getElementById("myCompareWithMyself").getContext("2d");
+                    window.myBar = new Chart(ctx, {
+                        type: 'bar',
+                        data: barChartData,
+                        options: {
+                            responsive: true,
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Bar Chart'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Month'
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }]
+                            },
+
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x, bar._model.y);
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    });
+                },
             }
         })
     </script>

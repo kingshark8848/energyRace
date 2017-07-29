@@ -136,76 +136,12 @@
                                     <span class="label label-success my-user-icon-label">you gained 340.5 energy saving point</span>
                                 </figcaption>
                             </figure>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#my-modal-rewards">trade for some benefits</button>
-
-                            {{--modal--}}
-                            <div class="modal fade" id="my-modal-rewards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-
-                                        <div class="well content_body_2">
-                                            <h3>Reward</h3>
-                                            {{--<div class="text-right">
-                                                <a class="btn btn-success">Leave a Review</a>
-                                            </div>--}}
-                                            <p class="center">Click below to see what sponsors provide.</p>
-                                            <div class="sponsor">
-                                                <div class="row sponsor_row">
-                                                    <div class="col-md-3 sponsor_item">
-                                                        <a href="http://www.ausgrid.com.au" target="_blank">
-                                                            <img class="img-responsive" src="img/ausgrid.jpg">
-                                                            <p>10% off next bill!</p>
-                                                            <p>cost 100 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-3 sponsor_item">
-                                                        <a href="http://www.colesexpress.com.au" target="_blank">
-                                                            <img class="img-responsive" src="img/coles_express.jpg">
-                                                            <p>3x points next shopping at any Coles Express for 5 times!</p>
-                                                            <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-3 sponsor_item">
-                                                        <a href="http://www.energyaustralia.com.au" target="_blank">
-                                                            <img class="img-responsive" src="img/energy_aus.gif">
-                                                            <p>Great deals when you transfer to us!</p>
-                                                            <p>cost 150 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-3 sponsor_item">
-                                                        <a href="http://www.cleanenergycouncil.org.au" target="_blank">
-                                                            <img class="img-responsive" src="img/cec.jpeg">
-                                                            <p>Find out more rewards with Clean Energy Council.</p>
-                                                            <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            {{--<div class="row">
-                                                <div class="col-md-12">
-                                                    <span class="glyphicon glyphicon-star"></span>
-                                                    <span class="glyphicon glyphicon-star"></span>
-                                                    <span class="glyphicon glyphicon-star"></span>
-                                                    <span class="glyphicon glyphicon-star"></span>
-                                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                                    Anonymous
-                                                    <span class="pull-right">15 days ago</span>
-                                                    <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                                                </div>
-                                            </div>--}}
-
-                                        </div>
-
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
-                            </div>
 
                         </div>
 
-
-
+                        <div class="row">
+                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#my-modal-rewards">Trade for some benefits</button>
+                        </div>
 
                     </div>
                 </div>
@@ -225,10 +161,19 @@
                                 </div>
                             </div>
 
-                            <p class="congrats">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
-                                (based on your yesterdays' electricity consumption) <br/>
+
+                            <p class="congrats" v-if="beat_percent >= 75 ">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
+                                (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
                                 + 4.5 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
                             </p>
+
+                            <p class="congrats" v-else>
+                                Try harder! Yesterday you only beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
+                                (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
+                                <span class="text-danger" style="font-size: large">if you can beat more than 75% people nearby, you can get some credit points!!</span>
+
+                            </p>
+
                         </div>
                         <div class="col-md-1">
                             <p class="small">Share with friends!</p>
@@ -259,6 +204,72 @@
 
     </div>
     <!-- /.container -->
+
+    {{-- modals --}}
+    {{--modal rewards--}}
+    <div class="modal fade" id="my-modal-rewards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="well content_body_2">
+                    <h3>Reward</h3>
+                    {{--<div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>--}}
+                    <p class="center">Click below to see what sponsors provide.</p>
+                    <div class="sponsor">
+                        <div class="row sponsor_row">
+                            <div class="col-md-3 sponsor_item">
+                                <a href="http://www.ausgrid.com.au" target="_blank">
+                                    <img class="img-responsive" src="img/ausgrid.jpg">
+                                    <p>10% off next bill!</p>
+                                    <p>cost 100 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 sponsor_item">
+                                <a href="http://www.colesexpress.com.au" target="_blank">
+                                    <img class="img-responsive" src="img/coles_express.jpg">
+                                    <p>3x points next shopping at any Coles Express for 5 times!</p>
+                                    <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 sponsor_item">
+                                <a href="http://www.energyaustralia.com.au" target="_blank">
+                                    <img class="img-responsive" src="img/energy_aus.gif">
+                                    <p>Great deals when you transfer to us!</p>
+                                    <p>cost 150 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 sponsor_item">
+                                <a href="http://www.cleanenergycouncil.org.au" target="_blank">
+                                    <img class="img-responsive" src="img/cec.jpeg">
+                                    <p>Find out more rewards with Clean Energy Council.</p>
+                                    <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {{--<div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">15 days ago</span>
+                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>--}}
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    {{--/modal rewards--}}
 @endsection
 
 @section('bottom_script')
@@ -294,7 +305,7 @@
                 // daily data
                 $.ajax({
                     method: "GET",
-                    url: "/api/v1/me/electricity_e_consumption_given_day?p_date=2013-02-07",
+                    url: "/api/v1/me/electricity_e_consumption_given_day",
                 }).success(function( res ) {
 //                        console.log(res);
                     vm.daily_data = res;
@@ -328,8 +339,8 @@
                                 label: 'Expenditures'
                             }],
                             labels: [
-                                "People beat you today",
-                                "People you beat today",
+                                "People beat you",
+                                "People you beat",
                             ]
                         },
                         options: {

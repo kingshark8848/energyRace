@@ -10,6 +10,6 @@ return [
 
     'cur_resident_id' => 8099,
 
-    'cur_date_str' => '2013-02-06',
+    'cur_date_str' => '2014-03-06',
 
 ];

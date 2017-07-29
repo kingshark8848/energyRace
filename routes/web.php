@@ -25,3 +25,9 @@ $app->post('/result', function () use ($app) {
     return view('result');
 });
 
+// =============== data api
+$app->group(['prefix' => 'api/v1'], function () use ($app) {
+
+    $app->get('/me/daily_electricity_consumption', 'ApiController@getMyDailyElectricityConsumption');
+});
+

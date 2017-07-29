@@ -1,0 +1,12 @@
+.form-group .find_nmi{
+    margin-left: 150px;
+    font-size: 16px;
+}
+.form-group .btn-primary{
+    padding: 5px 35px;
+    font-size: 27px;
+}
+.form-group input.form-control{
+    height: 50px;
+    font-size: 20px;
+}

@@ -40,7 +40,7 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
+                    <img class="img-responsive" src="img/logo.jpg" alt="">
                     <div class="intro-text">
                         <h1 class="name">Start EnergyRace</h1>
                         <hr class="star-light">
@@ -62,14 +62,15 @@
             </div>
             <div class="row">
 
-                <form class="form-horizontal" method="post" action="/result">
+                <form class="form-horizontal" method="post" action="/race">
                     <div class="form-group">
                         <!--                            <label for="nmi" class="col-lg-2 control-label">Input Your NMI</label>-->
-                        <div class="col-lg-2 col-xs-2"></div>
-                        <div class="col-lg-6 col-xs-6">
+
+                        <div class="col-lg-5 col-lg-offset-3 col-xs-6 col-xs-offset-2">
                             <input type="text" class="form-control" id="nmi" placeholder="Input Your NMI Code">
+                            <a class="find_nmi" href="http://www.ausgrid.com.au/Common/Customer-Services/Electricity-supply/Blackouts-and-power-restoration/NMIs.aspx#.WXp_lyF96V4" target="_blank">How do I find my NMI?</a>
                         </div>
-                        <div class="col-lg-2 col-xs-2 text-left">
+                        <div class="col-lg-3 col-xs-2 text-left">
                             <button type="submit" class="btn btn-primary">Go!</button>
                         </div>
                     </div>
@@ -77,12 +78,12 @@
 
             </div>
 
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-lg-2 col-xs-2"></div>
                 <div class="col-lg-6 col-xs-6">
                     <a href="http://www.ausgrid.com.au/Common/Customer-Services/Electricity-supply/Blackouts-and-power-restoration/NMIs.aspx#.WXp_lyF96V4" target="_blank">How do I find my NMI?</a>
                 </div>
-            </div>
+            </div>--}}
 
         </div>
     </section>
@@ -105,7 +106,7 @@
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
+                        <i class="fa fa-download"></i> Download Energy Guideline
                     </a>
                 </div>
             </div>

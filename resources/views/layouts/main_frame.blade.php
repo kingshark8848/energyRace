@@ -16,6 +16,7 @@
 
     <!-- Theme CSS -->
     <link href="css/theme1.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

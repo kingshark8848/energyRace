@@ -1,13 +1,13 @@
 @extends('layouts.main_frame')
 
 @section('extra_header')
-<style>
-    body {
-        font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        overflow-x: hidden;
-        padding-top: 120px;
-    }
-</style>
+    <style>
+        body {
+            font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            padding-top: 120px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -24,20 +24,20 @@
 
             {{--<!-- Collect the nav links, forms, and other content for toggling -->--}}
             {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
-                {{--<ul class="nav navbar-nav navbar-right">--}}
-                    {{--<li class="hidden">--}}
-                        {{--<a href="#page-top"></a>--}}
-                    {{--</li>--}}
-                    {{--<li class="page-scroll">--}}
-                        {{--<a href="#competition-entry">Start Competition</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="page-scroll">--}}
-                        {{--<a href="#about">About</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="page-scroll">--}}
-                        {{--<a href="#contact">Contact</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
+            {{--<ul class="nav navbar-nav navbar-right">--}}
+            {{--<li class="hidden">--}}
+            {{--<a href="#page-top"></a>--}}
+            {{--</li>--}}
+            {{--<li class="page-scroll">--}}
+            {{--<a href="#competition-entry">Start Competition</a>--}}
+            {{--</li>--}}
+            {{--<li class="page-scroll">--}}
+            {{--<a href="#about">About</a>--}}
+            {{--</li>--}}
+            {{--<li class="page-scroll">--}}
+            {{--<a href="#contact">Contact</a>--}}
+            {{--</li>--}}
+            {{--</ul>--}}
             {{--</div>--}}
             {{--<!-- /.navbar-collapse -->--}}
 
@@ -54,9 +54,9 @@
 
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="/home#top-page" class="list-group-item active">Let's Race</a>
-                    <a href="#" class="list-group-item">More Info</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                    <a href="/race" class="list-group-item ">Let's Race</a>
+                    <a href="/info" class="list-group-item active">More Info</a>
+                    <a href="/category" class="list-group-item ">Category 3</a>
                 </div>
             </div>
 

@@ -29,6 +29,24 @@
 
         <div class="row">
             <div class="col-xs-6">
+                <div id="canvas-holder" style="width:100%">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div id="canvas-holder" style="width:100%; height: 100%">
+                    <canvas id="myChart4"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
 
                 <div class="col-xs-10">
 
@@ -78,16 +96,19 @@
                 score_zoom: 1,
             },
             mounted() {
+                Chart.defaults.global.animation.duration = 2000;
 
                 let vm = this;
                 vm.loadLine();
                 vm.loadPieChart();
+                vm.loadBarChart();
+                vm.loadBarChartRanking();
             },
             methods: {
                 loadPieChart: function () {
 
                     let ctx1 = document.getElementById('myChart1').getContext('2d');
-                    let myPieChart = new Chart(ctx1, {
+                    window.myPieChart = new Chart(ctx1, {
                         type: 'pie',
                         data: {
                             datasets: [{
@@ -202,19 +223,39 @@
                                         labelString: 'Value'
                                     }
                                 }]
+                            },
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x, bar._model.y);
+                                        });
+                                    });
+                                }
                             }
                         }
                     };
 
                     let ctx2 = document.getElementById("myChart2").getContext("2d");
-                    let myLine = new Chart(ctx2, config);
+                    window.myLine = new Chart(ctx2, config);
                 },
 
                 loadBarChart: function () {
                     let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     let color = Chart.helpers.color;
                     let barChartData = {
-                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                         datasets: [{
                             label: 'Dataset 1',
                             backgroundColor: color('red').alpha(0.5).rgbString(),
@@ -228,6 +269,11 @@
                                 982,
                                 302,
                                 700,
+                                378,
+                                678,
+                                564,
+                                982,
+                                302,
                             ]
                         }, {
                             label: 'Dataset 2',
@@ -242,12 +288,17 @@
                                 782,
                                 402,
                                 600,
+                                178,
+                                378,
+                                264,
+                                782,
+                                402,
                             ]
                         }]
 
                     };
 
-                    let ctx = document.getElementById("canvas").getContext("2d");
+                    let ctx = document.getElementById("myChart3").getContext("2d");
                     window.myBar = new Chart(ctx, {
                         type: 'bar',
                         data: barChartData,
@@ -259,9 +310,116 @@
                             title: {
                                 display: true,
                                 text: 'Chart.js Bar Chart'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Month'
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }]
+                            },
+
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x, bar._model.y);
+                                        });
+                                    });
+                                }
                             }
                         }
                     });
+                },
+
+                loadBarChartRanking: function () {
+                    let color = Chart.helpers.color;
+                    let data = {
+                        labels: ['Top1','Top2','Top3','Top4','Top5', 'Me'],
+                        datasets: [{
+                            label: 'Dataset 1',
+                            backgroundColor: ['blue','blue','blue','blue','blue','red'],
+                            borderColor: ['blue','blue','blue','blue','blue','red'],
+                            borderWidth: 1,
+                            data: [
+                                400,
+                                478,
+                                678,
+                                864,
+                                982,
+                                1100
+                            ]
+                        }]
+                    };
+
+                    let ctx = document.getElementById("myChart4").getContext("2d");
+
+                    window.myBarRanking = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: data,
+                        options: {
+                            scales:{xAxes:[{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value'
+                                },
+                                ticks:{beginAtZero:true}
+                            }]},
+                            responsive: true,
+                            legend: {
+                                position: 'top',
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Bar Chart'
+                            },
+
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x+20, bar._model.y+5);
+                                        });
+                                    });
+                                }
+                            }
+
+                        }
+                    });
+
                 }
             }
         })

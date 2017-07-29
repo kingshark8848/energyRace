@@ -1,0 +1,148 @@
+html,body { height:100%; }
+.form-group .find_nmi{
+    margin-left: 150px;
+    font-size: 16px;
+}
+.form-group .btn-primary{
+    padding: 5px 35px;
+    font-size: 27px;
+}
+.form-group input.form-control{
+    height: 50px;
+    font-size: 20px;
+}
+.congrats{
+    clear: both;
+    font-size: 25px;
+    text-align: center;
+}
+.large{
+    font-size: 25px;
+}
+.small{
+    font-size: 15px;
+}
+.rating_percent{
+    color: blue;
+    font-size:30px;
+}
+.main_content{
+    margin-top: 50px;
+}
+.center{
+    text-align: center;
+}
+.sponsor_row{
+    min-height:300px;
+}
+.sponsor_item{
+    padding:20px 10px;
+    height: 100%;
+}
+.sponsor_item:hover{
+    background-color: #dad4d4;
+    border: 2px solid gray;
+}
+.sponsor_item a{
+    color: black;
+    text-decoration: none;
+}
+.sponsor_item a:hover, .sponsor_item a:visited, .sponsor_item a:focus{
+    text-decoration: none;
+}
+.thumbnail{
+    padding: 15px;
+}
+.thumbnail:hover{
+    background-color: rgba(128, 128, 128, 0.06);
+}
+.caption_full{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 30px 0px;
+    padding: 15px 5px;
+}
+.caption_full:hover{
+    background-color: rgba(128, 128, 128, 0.06);
+}
+.caption_full p{
+    font-size:25px;
+}
+
+#position_suburb{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+    background-color: rgba(24, 188, 156, 0.11);
+    cursor: pointer;
+}
+#position_suburb:hover{
+    background-color: rgba(24, 188, 156, 0.41);
+}
+#position_suburb_show{
+    color: #2e6da4;
+}
+#compare_yourself{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+    background-color: rgba(255, 165, 0, 0.25);
+    cursor: pointer;
+}
+#compare_yourself:hover{
+    background-color: rgba(255, 165, 0, 0.5);
+}
+#compare_yourself_show{
+    color: #94270c;
+}
+#recommend{
+    margin-top: 50px;
+}
+.recommend{
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.show_tips{
+    border: 1px solid black;
+    margin:10px;
+    padding: 15px;
+}
+ul{
+    font-size: 20px;
+}
+table, tr, td{
+    font-size: 15px;
+    border: 1px solid gray;
+}
+td{
+    width: 150px;
+    height: 50px;
+}
+#table1{
+    color: green;
+}
+#table2{
+    margin-top:100px;
+    color: blue;
+}
+#race_note{
+    margin-top:50px;
+}
+.personal_info_table{
+    margin-left: 150px;
+    margin-bottom: 40px;
+}
+.personal_info_table tr, .personal_info_table td{
+    color: rgba(51, 51, 51, 0.71);
+    font-size:13px;
+    border: none;
+}

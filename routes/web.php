@@ -21,8 +21,16 @@ $app->get('/home', function () use ($app) {
     return view('home');
 });
 
-$app->post('/result', function () use ($app) {
-    return view('result');
+$app->get('/race', function () use ($app) {
+    return view('race');
+});
+
+$app->get('/info', function () use ($app) {
+    return view('info');
+});
+
+$app->get('/category', function () use ($app) {
+    return view('category');
 });
 
 $app->get('/test/chart', function () use ($app) {

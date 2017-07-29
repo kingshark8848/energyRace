@@ -61,6 +61,31 @@
             </div>
 
             <div class="col-md-10">
+                <div class="personal_info">
+                    <table>
+                        <tr>
+                            <td><img class="img-responsive" src="img/house.png"></td>
+                            <td><img class="img-responsive" src="img/address.png"></td>
+                            <td><img class="img-responsive" src="img/people.png"></td>
+                            <td><img class="img-responsive" src="img/panel.png"></td>
+                        </tr>
+                        <tr>
+                            <td><p>type: house</p></td>
+                            <td><p>1 George st, Kiama</p></td>
+                            <td><p>4 persons</p></td>
+                            <td><p>no solar</p></td>
+                        </tr>
+                        {{--
+                    <img class="img-responsive" src="img/house.png">
+                    <p>type: house</p>
+                    <img class="img-responsive" src="img/address.png">
+                    <p>1 George st, Kiama</p>
+                    <img class="img-responsive" src="img/people.png">
+                    <p>4 persons</p>
+                    <img class="img-responsive" src="img/panel.png">
+                    <p>no solar</p>--}}
+                    </table>
+                </div>
 
                 <div class="thumbnail content_body_1">
                     <h2>Let's Race !</h2>
@@ -88,7 +113,7 @@
                             <img class="img-responsive" src="img/column_chart.png">
                         </div>
                         <div class="col-md-4">
-                            <p>al;sehgfq;nbg;lqbjsg<br>awehgtl;aehqhpgh<br>qoehrtqehopgh</p>
+                            <p id="race_note">al;sehgfq;nbg;lqbjsg<br>awehgtl;aehqhpgh<br>qoehrtqehopgh</p>
                         </div>
                     </div>
                 </div>

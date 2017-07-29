@@ -48,7 +48,6 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div class="row"></div>
 
         <div class="row">
 
@@ -65,92 +64,43 @@
 
                 <div class="thumbnail content_body_1">
                     <h2>Save your money</h2>
-                    <div class="col-md-9">
-                        <table id="table1">
-                            <tr>
-                                <td>Average Daily Sun Hour</td>
-                                <td>Solar system out-of-packet cost</td>
-                                <td>self consumption ratio</td>
-                                <td>Average Daily energy usage</td>
-                            </tr>
-                            <tr>
-                                <td>num1</td>
-                                <td>num2</td>
-                                <td>num3</td>
-                                <td>num4</td>
-                            </tr>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <table id="table1">
+                                <tr>
+                                    <td>Average Daily Sun Hour</td>
+                                    <td>Solar system out-of-packet cost</td>
+                                    <td>Self consumption ratio</td>
+                                    <td>Average Daily energy usage</td>
+                                </tr>
+                                <tr>
+                                    <td>num1</td>
+                                    <td>num2</td>
+                                    <td>num3</td>
+                                    <td>num4</td>
+                                </tr>
+                            </table>
 
-                        <table id="table2">
-                            <tr>
-                                <td>Energy charge with solar</td>
-                                <td>Energy charge without solar</td>
-                                <td>years to pay off</td>
-                                <td>Annual saving</td>
-                            </tr>
-                            <tr>
-                                <td>num5</td>
-                                <td>num6</td>
-                                <td>num7</td>
-                                <td>num8</td>
-                            </tr>
-                        </table>
+                            <table id="table2" style="display: none;">
+                                <tr>
+                                    <td>Energy charge with solar</td>
+                                    <td>Energy charge without solar</td>
+                                    <td>Years to pay off</td>
+                                    <td>Annual saving</td>
+                                </tr>
+                                <tr>
+                                    <td>num5</td>
+                                    <td>num6</td>
+                                    <td>num7</td>
+                                    <td>num8</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="btn-primary btn" id="show_table">Show your output</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="well content_body_2">
-
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
 
         </div>

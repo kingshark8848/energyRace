@@ -18,6 +18,11 @@ $('#compare_yourself').click(function () {
     }
 });
 
-$('.show_tips').click(function() {
-
+$('#show_table').click(function() {
+    if($('#table2').is(":visible")){
+        $('#table2').hide();
+    }
+    else{
+        $('#table2').show();
+    }
 });

@@ -119,3 +119,21 @@ html,body { height:100%; }
 ul{
     font-size: 20px;
 }
+table, tr, td{
+    font-size: 15px;
+    border: 1px solid gray;
+}
+td{
+    width: 150px;
+    height: 50px;
+}
+#table1{
+    color: green;
+}
+#table2{
+    margin-top:100px;
+    color: blue;
+}
+#race_note{
+    margin-top:50px;
+}

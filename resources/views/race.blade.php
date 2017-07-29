@@ -8,6 +8,11 @@
         padding-top: 120px;
     }
 </style>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" ></script>
 @endsection
 
 @section('content')
@@ -47,7 +52,7 @@
 
 
     <!-- Page Content -->
-    <div class="main_content container">
+    <div class="main_content container" id="my-vue">
         <div class="row"></div>
 
         <div class="row">
@@ -61,43 +66,167 @@
             </div>
 
             <div class="col-md-10">
-                <div class="personal_info">
-                    <table class="personal_info_table">
-                        <tr>
-                            <td><img class="img-responsive" src="img/house.png"></td>
-                            <td><img class="img-responsive" src="img/address.png"></td>
-                            <td><img class="img-responsive" src="img/people.png"></td>
-                            <td><img class="img-responsive" src="img/panel.png"></td>
-                        </tr>
-                        <tr>
-                            <td><p>type: house</p></td>
-                            <td><p>1 George st, Kiama</p></td>
-                            <td><p>4 persons</p></td>
-                            <td><p>no solar</p></td>
-                        </tr>
-                        {{--
-                    <img class="img-responsive" src="img/house.png">
-                    <p>type: house</p>
-                    <img class="img-responsive" src="img/address.png">
-                    <p>1 George st, Kiama</p>
-                    <img class="img-responsive" src="img/people.png">
-                    <p>4 persons</p>
-                    <img class="img-responsive" src="img/panel.png">
-                    <p>no solar</p>--}}
-                    </table>
+                {{--<div class="personal_info">--}}
+                    {{--<table class="personal_info_table">--}}
+                        {{--<tr>--}}
+                            {{--<td><img class="img-responsive" src="img/house.png"></td>--}}
+                            {{--<td><img class="img-responsive" src="img/address.png"></td>--}}
+                            {{--<td><img class="img-responsive" src="img/people.png"></td>--}}
+                            {{--<td><img class="img-responsive" src="img/panel.png"></td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td><p>type: house</p></td>--}}
+                            {{--<td><p>1 George st, Kiama</p></td>--}}
+                            {{--<td><p>4 persons</p></td>--}}
+                            {{--<td><p>no solar</p></td>--}}
+                        {{--</tr>--}}
+
+                    {{--<img class="img-responsive" src="img/house.png">--}}
+                    {{--<p>type: house</p>--}}
+                    {{--<img class="img-responsive" src="img/address.png">--}}
+                    {{--<p>1 George st, Kiama</p>--}}
+                    {{--<img class="img-responsive" src="img/people.png">--}}
+                    {{--<p>4 persons</p>--}}
+                    {{--<img class="img-responsive" src="img/panel.png">--}}
+                    {{--<p>no solar</p>--}}
+                    {{--</table>--}}
+                {{--</div>--}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Your Basic Info</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <figure style="display: inline-block" width="50" height="50">
+                                <img class="img-responsive" src="img/house.png">
+                                <figcaption>
+                                    <span class="label label-danger my-user-icon-label">House</span>
+                                </figcaption>
+                            </figure>
+
+                            <figure style="display: inline-block" width="50" height="50">
+                                <img class="img-responsive" src="img/address.png">
+                                <figcaption>
+                                    <span class="label label-danger my-user-icon-label">1 George st, Kiama</span>
+                                </figcaption>
+                            </figure>
+
+                            <figure style="display: inline-block" width="50" height="50">
+                                <img class="img-responsive" src="img/people.png">
+                                <figcaption>
+                                    <span class="label label-danger my-user-icon-label">4 persons</span>
+                                </figcaption>
+                            </figure>
+
+                            <figure style="display: inline-block" width="50" height="50">
+                                <img class="img-responsive" src="img/panel.png">
+                                <figcaption>
+                                    <span class="label label-danger my-user-icon-label">No solar system</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="row">
+                            <figure style="display: inline-block" width="50" height="50">
+                                <img class="img-responsive" src="img/Coin_0.png" style="width: 50px">
+                                <figcaption>
+                                    <span class="label label-success my-user-icon-label">you gained 340.5 energy saving point</span>
+                                </figcaption>
+                            </figure>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#my-modal-rewards">trade for some benefits</button>
+
+                            {{--modal--}}
+                            <div class="modal fade" id="my-modal-rewards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+
+                                        <div class="well content_body_2">
+                                            <h3>Reward</h3>
+                                            {{--<div class="text-right">
+                                                <a class="btn btn-success">Leave a Review</a>
+                                            </div>--}}
+                                            <p class="center">Click below to see what sponsors provide.</p>
+                                            <div class="sponsor">
+                                                <div class="row sponsor_row">
+                                                    <div class="col-md-3 sponsor_item">
+                                                        <a href="http://www.ausgrid.com.au" target="_blank">
+                                                            <img class="img-responsive" src="img/ausgrid.jpg">
+                                                            <p>10% off next bill!</p>
+                                                            <p>cost 100 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-3 sponsor_item">
+                                                        <a href="http://www.colesexpress.com.au" target="_blank">
+                                                            <img class="img-responsive" src="img/coles_express.jpg">
+                                                            <p>3x points next shopping at any Coles Express for 5 times!</p>
+                                                            <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-3 sponsor_item">
+                                                        <a href="http://www.energyaustralia.com.au" target="_blank">
+                                                            <img class="img-responsive" src="img/energy_aus.gif">
+                                                            <p>Great deals when you transfer to us!</p>
+                                                            <p>cost 150 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-3 sponsor_item">
+                                                        <a href="http://www.cleanenergycouncil.org.au" target="_blank">
+                                                            <img class="img-responsive" src="img/cec.jpeg">
+                                                            <p>Find out more rewards with Clean Energy Council.</p>
+                                                            <p>cost 200 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png"></p>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            {{--<div class="row">
+                                                <div class="col-md-12">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                                    Anonymous
+                                                    <span class="pull-right">15 days ago</span>
+                                                    <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                                                </div>
+                                            </div>--}}
+
+                                        </div>
+
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
                 </div>
 
                 <div class="thumbnail content_body_1">
-                    <h2>Let's Race !</h2>
+                    <h3>New Achievement</h3>
                     <div class="row">
                         <div class="col-md-11">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="img/pie_chart.png" alt="">
+                                <div id="canvas-holder" style="width:100%">
+                                    <canvas id="myBarChart"></canvas>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <img class="img-responsive" src="img/line_chart.jpg" alt="">
+                                <div id="canvas-holder">
+                                    <canvas id="myTop5" style="display: block; width:100%; height: 200px;"></canvas>
+                                </div>
                             </div>
-                            <p class="congrats">Congratulation ! &nbsp; You beat <span class="rating_percent">73%</span> people.</p>
+
+                            <p class="congrats">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">73%</span> people (+ 4.5 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">)<br/>
+                                (based on your yesterdays' electricity consumption) <br/>
+
+                            </p>
                         </div>
                         <div class="col-md-1">
                             <p class="small">Share with friends!</p>
@@ -107,74 +236,256 @@
                 </div>
 
                 <div class="caption_full">
+                    <h3>Your Month Consumption This Year</h3>
                     <div class="row">
-                        <div class="col-md-7 col-md-offset-1">
-                            <h4 class="center">&some title&</h4>
-                            <img class="img-responsive" src="img/column_chart.png">
+                        <div class="col-md-12">
+                            <div id="canvas-holder" style="width:100%">
+                                <canvas id="myMonthLineChart"></canvas>
+                            </div>
                         </div>
-                        <div class="col-md-4">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
                             <p id="race_note">al;sehgfq;nbg;lqbjsg<br>awehgtl;aehqhpgh<br>qoehrtqehopgh</p>
                         </div>
                     </div>
                 </div>
-
-
-
-                <div class="well content_body_2">
-                    <h3>Reward</h3>
-                    {{--<div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>--}}
-                    <p class="center">Click below to see what sponsors provide.</p>
-                    <div class="sponsor">
-                        <div class="row sponsor_row">
-                            <div class="col-md-3 sponsor_item">
-                                <a href="http://www.ausgrid.com.au" target="_blank">
-                                    <img class="img-responsive" src="img/ausgrid.jpg">
-                                    <p>10% off next bill!</p>
-                                </a>
-                            </div>
-                            <div class="col-md-3 sponsor_item">
-                                <a href="http://www.colesexpress.com.au" target="_blank">
-                                    <img class="img-responsive" src="img/coles_express.jpg">
-                                    <p>3x points next shopping at any Coles Express for 5 times!</p>
-                                </a>
-                            </div>
-                            <div class="col-md-3 sponsor_item">
-                                <a href="http://www.energyaustralia.com.au" target="_blank">
-                                    <img class="img-responsive" src="img/energy_aus.gif">
-                                    <p>Great deals when you transfer to us!</p>
-                                </a>
-                            </div>
-                            <div class="col-md-3 sponsor_item">
-                                <a href="http://www.cleanenergycouncil.org.au" target="_blank">
-                                    <img class="img-responsive" src="img/cec.jpeg">
-                                    <p>Find out more rewards with Clean Energy Council.</p>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {{--<div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>--}}
-
-                </div>
-
             </div>
 
         </div>
 
     </div>
     <!-- /.container -->
+@endsection
+
+@section('bottom_script')
+
+    <script>
+        new Vue({
+            el: '#my-vue',
+            data: {
+                country_data: {},
+                his_items: [],
+
+                my_date: "",
+                top_persons: [{'key':1,'val': 476, 'rank':1}, {'key':2,'val': 400, 'rank':2}, {'key':3,'val': 532, 'rank':3}],
+                old_items: [],
+                animate_items: [],
+                ranking_attr: "val",
+                score_zoom: 1,
+            },
+            mounted() {
+                Chart.defaults.global.animation.duration = 2000;
+
+                let vm = this;
+                vm.loadLine();
+                vm.loadPieChart();
+                vm.loadBarChartRanking();
+            },
+            methods: {
+                loadPieChart: function () {
+
+                    let ctx1 = document.getElementById('myBarChart').getContext('2d');
+                    window.myPieChart = new Chart(ctx1, {
+                        type: 'pie',
+                        data: {
+                            datasets: [{
+                                data: [
+                                    (7-1), 25-7
+                                ],
+                                backgroundColor: [
+                                    "#bcccf7",
+                                    "#2455f7",
+                                ],
+                                label: 'Expenditures'
+                            }],
+                            labels: [
+                                "People beat you today",
+                                "People you beat today",
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                position: 'bottom',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Compare with people nearby'
+                            },
+                            animation: {
+                                segmentShowStroke : true,
+                                animateScale: true,
+                                animateRotate: true
+                            },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        let dataset = data.datasets[tooltipItem.datasetIndex];
+                                        let total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                                            return previousValue + currentValue;
+                                        });
+                                        let currentValue = dataset.data[tooltipItem.index];
+                                        let precentage = Math.floor(((currentValue/total) * 100)+0.5);
+                                        return precentage + "%";
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                },
+
+                loadLine: function () {
+                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let config = {
+                        type: 'line',
+                        data: {
+                            labels: ["January", "February", "March", "April", "May", "June", "July"],
+                            datasets: [{
+                                label: "My First dataset",
+                                backgroundColor: 'red',
+                                borderColor: 'red',
+                                data: [
+                                    400,
+                                    600,
+                                    456,
+                                    700,
+                                    330,
+                                    400,
+                                    533,
+                                ],
+                                fill: false,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            title:{
+                                display:true,
+                                text:'Chart.js Line Chart'
+                            },
+                            tooltips: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Month'
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }]
+                            },
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x, bar._model.y);
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    };
+
+                    let ctx2 = document.getElementById("myMonthLineChart").getContext("2d");
+                    window.myLine = new Chart(ctx2, config);
+                },
+
+                loadBarChartRanking: function () {
+                    let color = Chart.helpers.color;
+                    let data = {
+                        labels: ['Top1','Top2','Top3','Top4','Top5', 'Me'],
+                        datasets: [{
+                            label: 'Dataset 1',
+                            backgroundColor: ['blue','blue','blue','blue','blue','red'],
+                            borderColor: ['blue','blue','blue','blue','blue','red'],
+                            borderWidth: 1,
+                            data: [
+                                400,
+                                478,
+                                678,
+                                864,
+                                982,
+                                1100
+                            ]
+                        }]
+                    };
+
+                    let ctx = document.getElementById("myTop5").getContext("2d");
+
+                    window.myBarRanking = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: data,
+                        options: {
+                            scales:{xAxes:[{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value'
+                                },
+                                ticks:{beginAtZero:true}
+                            }]},
+                            responsive: true,
+                            legend: {
+                                position: 'top',
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Bar Chart'
+                            },
+
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x+20, bar._model.y+5);
+                                        });
+                                    });
+                                }
+                            }
+
+                        }
+                    });
+
+                }
+            }
+        })
+    </script>
 @endsection

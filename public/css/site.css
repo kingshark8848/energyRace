@@ -60,7 +60,7 @@ html,body { height:100%; }
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 30px 0px;
-    padding: 15px 5px;
+    padding: 15px;
 }
 .caption_full:hover{
     background-color: rgba(128, 128, 128, 0.06);
@@ -141,8 +141,13 @@ td{
     margin-left: 150px;
     margin-bottom: 40px;
 }
-.personal_info_table tr, .personal_info_table td{
-    color: rgba(51, 51, 51, 0.71);
-    font-size:13px;
-    border: none;
+
+.my-user-icon-label {
+    font-size: large;
+    line-height: 2em;
+}
+
+.my-coin-with-text {
+    display:inline-block;
+    width: 1em
 }

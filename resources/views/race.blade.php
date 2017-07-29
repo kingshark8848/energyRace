@@ -62,7 +62,7 @@
 
             <div class="col-md-10">
                 <div class="personal_info">
-                    <table>
+                    <table class="personal_info_table">
                         <tr>
                             <td><img class="img-responsive" src="img/house.png"></td>
                             <td><img class="img-responsive" src="img/address.png"></td>

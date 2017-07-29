@@ -137,3 +137,12 @@ td{
 #race_note{
     margin-top:50px;
 }
+.personal_info_table{
+    margin-left: 150px;
+    margin-bottom: 40px;
+}
+.personal_info_table tr, .personal_info_table td{
+    color: rgba(51, 51, 51, 0.71);
+    font-size:13px;
+    border: none;
+}

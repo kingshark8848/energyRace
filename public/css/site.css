@@ -1,3 +1,4 @@
+html,body { height:100%; }
 .form-group .find_nmi{
     margin-left: 150px;
     font-size: 16px;
@@ -9,4 +10,58 @@
 .form-group input.form-control{
     height: 50px;
     font-size: 20px;
+}
+.congrats{
+    clear: both;
+    font-size: 25px;
+    text-align: center;
+}
+.large{
+    font-size: 25px;
+}
+.rating_percent{
+    color: blue;
+    font-size:30px;
+}
+.main_content{
+    margin-top: 50px;
+}
+.center{
+    text-align: center;
+}
+.sponsor_row{
+    min-height:300px;
+}
+.sponsor_item{
+    padding:20px 10px;
+    height: 100%;
+}
+.sponsor_item:hover{
+    background-color: #dad4d4;
+    border: 2px solid gray;
+}
+.sponsor_item a{
+    color: black;
+    text-decoration: none;
+}
+.sponsor_item a:hover, .sponsor_item a:visited, .sponsor_item a:focus{
+    text-decoration: none;
+}
+p.small{
+    font-size: 15px;
+}
+.thumbnail:hover{
+    background-color: rgba(128, 128, 128, 0.06);
+}
+.caption_full{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 30px 0px;
+    padding: 15px 5px;
+}
+.caption_full:hover{
+    background-color: rgba(128, 128, 128, 0.06);
+}
+.caption_full p{
+    font-size:25px;
 }

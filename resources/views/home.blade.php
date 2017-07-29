@@ -62,7 +62,7 @@
             </div>
             <div class="row">
 
-                <form class="form-horizontal" method="post" action="/race">
+                <form class="form-horizontal" method="get" action="/race">
                     <div class="form-group">
                         <!--                            <label for="nmi" class="col-lg-2 control-label">Input Your NMI</label>-->
 

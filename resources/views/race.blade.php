@@ -127,6 +127,8 @@
                             </figure>
                         </div>
 
+                        <br/>
+
                         <div class="row">
                             <figure style="display: inline-block" width="50" height="50">
                                 <img class="img-responsive" src="img/Coin_0.png" style="width: 50px">
@@ -223,9 +225,9 @@
                                 </div>
                             </div>
 
-                            <p class="congrats">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">73%</span> people (+ 4.5 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">)<br/>
+                            <p class="congrats">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
                                 (based on your yesterdays' electricity consumption) <br/>
-
+                                + 4.5 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
                             </p>
                         </div>
                         <div class="col-md-1">
@@ -235,22 +237,22 @@
                     </div>
                 </div>
 
-                <div class="caption_full">
-                    <h3>Your Month Consumption This Year</h3>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="canvas-holder" style="width:100%">
-                                <canvas id="myMonthLineChart"></canvas>
-                            </div>
-                        </div>
+                {{--<div class="caption_full">--}}
+                    {{--<h3>Your Month Consumption This Year</h3>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div id="canvas-holder" style="width:100%">--}}
+                                {{--<canvas id="myMonthLineChart"></canvas>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <p id="race_note">al;sehgfq;nbg;lqbjsg<br>awehgtl;aehqhpgh<br>qoehrtqehopgh</p>
-                        </div>
-                    </div>
-                </div>
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-8 col-md-offset-2">--}}
+                            {{--<p id="race_note">al;sehgfq;nbg;lqbjsg<br>awehgtl;aehqhpgh<br>qoehrtqehopgh</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
 
         </div>
@@ -265,26 +267,51 @@
         new Vue({
             el: '#my-vue',
             data: {
-                country_data: {},
-                his_items: [],
-
-                my_date: "",
+                daily_data: {},
                 top_persons: [{'key':1,'val': 476, 'rank':1}, {'key':2,'val': 400, 'rank':2}, {'key':3,'val': 532, 'rank':3}],
-                old_items: [],
-                animate_items: [],
                 ranking_attr: "val",
                 score_zoom: 1,
             },
-            mounted() {
-                Chart.defaults.global.animation.duration = 2000;
+            computed: {
+                beat_percent: function () {
 
+                    let vm = this;
+
+                    try{
+                        let dailyRanking = vm.daily_data.cur_day_self.daily_ranking;
+                        let dailyPersonCount = vm.daily_data.person_count;
+                        return ((dailyPersonCount - dailyRanking) / (dailyPersonCount-1) * 100 ).toFixed(2);
+                    }
+                    catch (e){
+                        return 0;
+                    }
+
+                }
+            },
+            mounted() {
                 let vm = this;
-                vm.loadLine();
-                vm.loadPieChart();
-                vm.loadBarChartRanking();
+
+                // daily data
+                $.ajax({
+                    method: "GET",
+                    url: "/api/v1/me/daily_electricity_consumption?p_date=2013-02-07",
+                }).success(function( res ) {
+//                        console.log(res);
+                    vm.daily_data = res;
+
+                    vm.loadPieChart();
+                    vm.loadBarChartRanking();
+                });
+
+                Chart.defaults.global.animation.duration = 2000;
             },
             methods: {
                 loadPieChart: function () {
+
+                    let vm = this;
+
+                    let dailyRanking = vm.daily_data.cur_day_self.daily_ranking;
+                    let dailyPersonCount = vm.daily_data.person_count;
 
                     let ctx1 = document.getElementById('myBarChart').getContext('2d');
                     window.myPieChart = new Chart(ctx1, {
@@ -292,7 +319,7 @@
                         data: {
                             datasets: [{
                                 data: [
-                                    (7-1), 25-7
+                                    (dailyRanking-1), dailyPersonCount-dailyRanking
                                 ],
                                 backgroundColor: [
                                     "#bcccf7",
@@ -312,7 +339,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Compare with people nearby'
+                                text: 'Yesterday you compare with people nearby'
                             },
                             animation: {
                                 segmentShowStroke : true,
@@ -327,7 +354,7 @@
                                             return previousValue + currentValue;
                                         });
                                         let currentValue = dataset.data[tooltipItem.index];
-                                        let precentage = Math.floor(((currentValue/total) * 100)+0.5);
+                                        let precentage = ((currentValue/total) * 100).toFixed(2);
                                         return precentage + "%";
                                     }
                                 }
@@ -336,103 +363,41 @@
                     });
 
                 },
-
-                loadLine: function () {
-                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    let config = {
-                        type: 'line',
-                        data: {
-                            labels: ["January", "February", "March", "April", "May", "June", "July"],
-                            datasets: [{
-                                label: "My First dataset",
-                                backgroundColor: 'red',
-                                borderColor: 'red',
-                                data: [
-                                    400,
-                                    600,
-                                    456,
-                                    700,
-                                    330,
-                                    400,
-                                    533,
-                                ],
-                                fill: false,
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            title:{
-                                display:true,
-                                text:'Chart.js Line Chart'
-                            },
-                            tooltips: {
-                                mode: 'index',
-                                intersect: false,
-                            },
-                            hover: {
-                                mode: 'nearest',
-                                intersect: true
-                            },
-                            scales: {
-                                xAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Month'
-                                    }
-                                }],
-                                yAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Value'
-                                    }
-                                }]
-                            },
-                            animation: {
-                                onComplete: function () {
-                                    console.log('hello');
-                                    let chartInstance = this.chart,
-                                        ctx = chartInstance.ctx;
-
-                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                                    ctx.fillStyle = 'black';
-                                    ctx.textAlign = 'center';
-                                    ctx.textBaseline = 'bottom';
-
-                                    this.data.datasets.forEach(function(dataset, i) {
-                                        let meta = chartInstance.controller.getDatasetMeta(i);
-                                        meta.data.forEach(function (bar, index) {
-                                            let data = dataset.data[index];
-                                            ctx.fillText(data, bar._model.x, bar._model.y);
-                                        });
-                                    });
-                                }
-                            }
-                        }
-                    };
-
-                    let ctx2 = document.getElementById("myMonthLineChart").getContext("2d");
-                    window.myLine = new Chart(ctx2, config);
-                },
-
+                
                 loadBarChartRanking: function () {
+                    let vm = this;
+
+                    // compute top5 and me
+                    let top5 = _.orderBy(vm.daily_data.cur_day_top_5, ['ranking'], ['asc']);
+
+                    // get labels
+                    let labels = ['Top1','Top2','Top3','Top4','Top5'];
+                    let backgroundColor = ['blue','blue','blue','blue','blue'];
+                    let borderColor = ['blue','blue','blue','blue','blue'];
+                    let v_data = _.map(top5, 'daily_WH');
+
+                    let selfIndex = _.findIndex(top5, ['respondent_no', vm.daily_data.cur_day_self.respondent_no]);
+                    if (selfIndex!==-1){
+                        labels[selfIndex] += ' (Me)';
+                        backgroundColor[selfIndex] = 'red';
+                        borderColor[selfIndex] = 'red';
+                    }
+                    else{
+                        labels.push('Me');
+                        backgroundColor.push('red');
+                        borderColor.push('red');
+                        v_data.push(vm.daily_data.cur_day_self.daily_WH);
+                    }
+
                     let color = Chart.helpers.color;
                     let data = {
-                        labels: ['Top1','Top2','Top3','Top4','Top5', 'Me'],
+                        labels: labels,
                         datasets: [{
                             label: 'Dataset 1',
-                            backgroundColor: ['blue','blue','blue','blue','blue','red'],
-                            borderColor: ['blue','blue','blue','blue','blue','red'],
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
                             borderWidth: 1,
-                            data: [
-                                400,
-                                478,
-                                678,
-                                864,
-                                982,
-                                1100
-                            ]
+                            data: v_data
                         }]
                     };
 
@@ -446,7 +411,7 @@
                                 display: true,
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'Value'
+                                    labelString: 'WH'
                                 },
                                 ticks:{beginAtZero:true}
                             }]},
@@ -457,7 +422,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Chart.js Bar Chart'
+                                text: 'Yesterday Top5 Energy Saver'
                             },
 
                             animation: {

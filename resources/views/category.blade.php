@@ -70,18 +70,33 @@
                             <fieldset>
                                 <legend></legend>
                                 <div class="form-group">
-                                    <label for="data1" class="col-lg-2 control-label">Average Daily Sun Hour</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="data1" placeholder="Email">
+                                    <label for="data1" class="col-lg-4 control-label">Average Daily Sun Hour <span class="text-danger">(hour)</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="data1" placeholder="5.14">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="data2" class="col-lg-2 control-label">Average Daily Sun Hour</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" id="data2" placeholder="Email">
+                                    <label for="data2" class="col-lg-4 control-label">Solar system out-of-packet cost <span class="text-danger">(AU dollar)</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="data2" placeholder="6000">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="data3" class="col-lg-4 control-label">Self consumption ratio <span class="text-danger">(%)</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="data3" placeholder="0.3">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="data4" class="col-lg-4 control-label">Average Daily energy usage <span class="text-danger">(KWH)</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="data4" placeholder="25">
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group">
                                     <div class="col-lg-10 col-lg-offset-2">
@@ -92,6 +107,50 @@
                                 </div>
                             </fieldset>
                         </form>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary" id="table2" style="display: none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Estimate Result</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+
+                            <div class="col-md-8">
+
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right col-md-4 info"><strong>Energy charge with solar</strong></td>
+                                            <td>4.16 <span class="text-danger">AU dollar</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right col-md-4 info"><strong>Energy charge without solar</strong></td>
+                                            <td>6.88 <span class="text-danger">AU dollar</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right col-md-4 info"><strong>Years to pay off</strong></td>
+                                            <td>5.75 <span class="text-danger">Year</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-right col-md-4 info"><strong>Annual saving</strong></td>
+                                            <td>1072 <span class="text-danger">AU dollar</span></td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
 

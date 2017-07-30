@@ -96,18 +96,22 @@
                     <h2>About</h2>
                     <hr class="star-light">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                <p>Our project is about electricity consumption ranking system, the main purpose is<br>to encourage customer to save energy.<br><br>What we can see is that the retail price of electricity increase year by year post a burden on financial.</p>
+                <img class="img-responsive" src="???">
+                <p>The number of pollution problems is increasing!</p>
+                <div class="col-md-6 textarea1" width='300' height='300'>
+                    <br>
+                    <font color = "#FF0000" size="10">3 m<sup>2</sup></sup><br></font>
+                    <font color = "#000000" size="4" >of sea ice disappear for every<br></font>
+                    <font color = "#FF0000" size="10">1 tonnne<br></font>
+                    <font color = "#000000" size="4">of CO<sup>2</sup> emitted<br></font>
                 </div>
-                <div class="col-lg-4">
-                    <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Energy Guideline
-                    </a>
+
+                <div class="col-md-6 textarea2" width='300' height='300'>
+                    <br>
+                    <font color = "#000000" size="4">Globally, we emit<br></font>
+                    <font color = "#000000" size="10">35 billion tonnes<br></font>
+                    <font color = "#000000" size="4">of CO<sup>2</sup> each year<br></font>
                 </div>
             </div>
         </div>
@@ -118,7 +122,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Contact Me</h2>
+                    <h2>Contact Us</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -175,10 +179,9 @@
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Location</h3>
-                        <p>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</p>
+                        <p>UNSW</p>
                     </div>
-                    <div class="footer-col col-md-4">
+                    <div class="footer-col col-md-8">
                         <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
@@ -198,10 +201,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About EnergyRace</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -209,7 +208,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
+                        Copyright &copy; energyRace 2016
                     </div>
                 </div>
             </div>

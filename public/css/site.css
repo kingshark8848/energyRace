@@ -116,9 +116,9 @@ html,body { height:100%; }
     margin:10px;
     padding: 15px;
 }
-ul{
+/*ul{
     font-size: 20px;
-}
+}*/
 table, tr, td{
     font-size: 15px;
     border: 1px solid gray;
@@ -131,8 +131,9 @@ td{
     color: green;
 }
 #table2{
-    margin-top:100px;
-    color: blue;
+    /*margin-top:100px;*/
+    /*color: blue;*/
+    font-size: medium;
 }
 #race_note{
     margin-top:50px;

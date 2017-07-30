@@ -63,7 +63,7 @@
                 <div class="list-group">
                     <a href="/race" class="list-group-item ">Let's Race</a>
                     <a href="/info" class="list-group-item active">More Info</a>
-                    <a href="/category" class="list-group-item ">Category 3</a>
+                    <a href="/category" class="list-group-item ">Choose Solar Panel</a>
                 </div>
             </div>
 

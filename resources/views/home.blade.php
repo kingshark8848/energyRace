@@ -67,7 +67,7 @@
                         <!--                            <label for="nmi" class="col-lg-2 control-label">Input Your NMI</label>-->
 
                         <div class="col-lg-5 col-lg-offset-3 col-xs-6 col-xs-offset-2">
-                            <input type="text" class="form-control" name="nmi" id="nmi" placeholder="Input Your NMI Code">
+                            <input type="text" class="form-control" name="nmi" id="nmi" placeholder="Input Your NMI Code" required>
                             <a class="find_nmi" href="http://www.ausgrid.com.au/Common/Customer-Services/Electricity-supply/Blackouts-and-power-restoration/NMIs.aspx#.WXp_lyF96V4" target="_blank">How do I find my NMI?</a>
                         </div>
                         <div class="col-lg-3 col-xs-2 text-left">

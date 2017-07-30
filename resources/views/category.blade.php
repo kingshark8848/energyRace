@@ -56,13 +56,46 @@
 
                     <a href="/race" class="list-group-item ">Let's Race</a>
                     <a href="/info" class="list-group-item ">More Info</a>
-                    <a href="/category" class="list-group-item active">Category 3</a>
+                    <a href="/category" class="list-group-item active">Choose Solar Panel</a>
                 </div>
             </div>
 
             <div class="col-md-10">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Input Form</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <legend></legend>
+                                <div class="form-group">
+                                    <label for="data1" class="col-lg-2 control-label">Average Daily Sun Hour</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="data1" placeholder="Email">
+                                    </div>
+                                </div>
 
-                <div class="thumbnail content_body_1">
+                                <div class="form-group">
+                                    <label for="data2" class="col-lg-2 control-label">Average Daily Sun Hour</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="data2" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-10 col-lg-offset-2">
+                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                        {{--<button type="submit" class="btn btn-primary">Submit</button>--}}
+                                        <p class="btn-primary btn" id="show_table">Show Result</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                {{--<div class="thumbnail content_body_1">
                     <h2>Save your money</h2>
                     <div class="row">
                         <div class="col-md-9">
@@ -100,7 +133,7 @@
                             <p class="btn-primary btn" id="show_table">Show your output</p>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
 
         </div>

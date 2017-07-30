@@ -61,7 +61,7 @@
                 <div class="list-group">
                     <a href="/race" class="list-group-item active">Let's Race</a>
                     <a href="/info" class="list-group-item ">More Info</a>
-                    <a href="/category" class="list-group-item ">Category 3</a>
+                    <a href="/category" class="list-group-item ">Choose Solar Panel</a>
                 </div>
             </div>
 
@@ -150,29 +150,36 @@
                     <h3>New Achievement</h3>
                     <div class="row">
                         <div class="col-md-11">
-                            <div class="col-md-6">
-                                <div id="canvas-holder" style="width:100%">
-                                    <canvas id="myBarChart"></canvas>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div id="canvas-holder" style="width:100%">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div id="canvas-holder" style="width:100%">
+                                        <canvas id="myTop5"></canvas>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div id="canvas-holder">
-                                    <canvas id="myTop5" style="display: block; width:100%; height: 200px;"></canvas>
-                                </div>
+
+                            <div class="row">
+
+                                <p class="congrats" v-if="beat_percent >= 75 ">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
+                                    (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
+                                    + @{{ daily_point_earned }} <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
+                                </p>
+
+                                <p class="congrats" v-else>
+                                    Try harder! Yesterday you only beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
+                                    (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
+                                    <span class="text-danger" style="font-size: large">if you can beat more than 75% people nearby, you can get some credit points!!</span>
+
+                                </p>
+
                             </div>
-
-
-                            <p class="congrats" v-if="beat_percent >= 75 ">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
-                                (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
-                                + @{{ daily_point_earned }} <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
-                            </p>
-
-                            <p class="congrats" v-else>
-                                Try harder! Yesterday you only beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
-                                (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
-                                <span class="text-danger" style="font-size: large">if you can beat more than 75% people nearby, you can get some credit points!!</span>
-
-                            </p>
 
                         </div>
                         <div class="col-md-1">

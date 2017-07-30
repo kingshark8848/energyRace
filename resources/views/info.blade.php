@@ -68,6 +68,37 @@
             </div>
 
             <div class="col-md-10">
+                <div class="well content_body_2">
+                    <h3>Compare with yourself</h3>
+                    <p>Each month consumption, this year VS. last year</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="canvas-holder" style="width:100%">
+                                <canvas id="myCompareWithMyself-1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-hr">
+
+                    <p>Total consumption, this year VS. last year</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="canvas-holder" style="width:100%">
+                                <canvas id="myCompareWithMyself-2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-2">
+                            <p id="compare_yourself" class="large">Have you improved comparing to your last year?</p>
+                            <h2 id="compare_yourself_show" class="center" style="display: none">10% better!</h2>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="thumbnail content_body_1">
                     <h3>Data in your area</h3>
                     <div class="row">
@@ -77,26 +108,6 @@
                         <div class="col-md-4">
                             <p id="position_suburb" class="large">What position are you in your suburb?</p>
                             <h2 id="position_suburb_show" class="center" style="display: none">TOP 20%</h2>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="well content_body_2">
-                    <h3>Compare with yourself</h3>
-                    <p>Same months, this year vs last year</p>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="canvas-holder" style="width:100%">
-                                <canvas id="myCompareWithMyself"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-2">
-                            <p id="compare_yourself" class="large">Have you improved comparing to your last year?</p>
-                            <h2 id="compare_yourself_show" class="center" style="display: none">10% better!</h2>
                         </div>
                     </div>
 
@@ -171,59 +182,44 @@
                     vm.month_data = res;
 
                     vm.loadBarChart();
+                    vm.loadLine();
                 });
 
 
             },
             methods: {
                 loadBarChart: function () {
-                    let MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let vm = this;
+
+                    let monthDataThisYear  = _.orderBy(vm.month_data.my_year_month_data, ['v_month'], ['asc']);
+                    let monthDataLastYear  = _.orderBy(vm.month_data.my_last_year_month_data, ['v_month'], ['asc']);
+
+                    let monthLabels = _.map(monthDataThisYear, 'v_month');
+                    let monthWHThisYear = _.map(monthDataThisYear, 'month_WH');
+
+                    let monthWHLastYear = _.map(monthDataLastYear, 'month_WH');
+
                     let color = Chart.helpers.color;
                     let barChartData = {
-                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        labels: monthLabels,
                         datasets: [{
-                            label: 'Dataset 1',
-                            backgroundColor: color('red').alpha(0.5).rgbString(),
-                            borderColor: 'red',
-                            borderWidth: 1,
-                            data: [
-                                400,
-                                378,
-                                678,
-                                564,
-                                982,
-                                302,
-                                700,
-                                378,
-                                678,
-                                564,
-                                982,
-                                302,
-                            ]
-                        }, {
-                            label: 'Dataset 2',
+                            label: 'Month Consumption Last Year',
                             backgroundColor: color('blue').alpha(0.5).rgbString(),
                             borderColor: 'blue',
                             borderWidth: 1,
-                            data: [
-                                60,
-                                178,
-                                378,
-                                264,
-                                782,
-                                402,
-                                600,
-                                178,
-                                378,
-                                264,
-                                782,
-                                402,
-                            ]
+                            data: monthWHLastYear
+                        },
+                        {
+                            label: 'Month Consumption This Year',
+                            backgroundColor: color('red').alpha(0.5).rgbString(),
+                            borderColor: 'red',
+                            borderWidth: 1,
+                            data: monthWHThisYear
                         }]
 
                     };
 
-                    let ctx = document.getElementById("myCompareWithMyself").getContext("2d");
+                    let ctx = document.getElementById("myCompareWithMyself-1").getContext("2d");
                     window.myBar = new Chart(ctx, {
                         type: 'bar',
                         data: barChartData,
@@ -234,7 +230,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Chart.js Bar Chart'
+                                text: 'Same months electricity consumption, this year vs last year'
                             },
                             scales: {
                                 xAxes: [{
@@ -248,7 +244,7 @@
                                     display: true,
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Value'
+                                        labelString: 'WH'
                                     }
                                 }]
                             },
@@ -276,6 +272,107 @@
                         }
                     });
                 },
+
+                loadLine: function () {
+                    let vm = this;
+
+                    let monthDataThisYear  = _.orderBy(vm.month_data.my_year_month_data, ['v_month'], ['asc']);
+                    let monthDataLastYear  = _.orderBy(vm.month_data.my_last_year_month_data, ['v_month'], ['asc']);
+
+                    let monthLabels = _.map(monthDataThisYear, 'v_month');
+
+                    let monthWHThisYear = _.map(monthDataThisYear, 'month_WH');
+                    let monthSumWHThisYear = vm.prefixSum(monthWHThisYear);
+
+                    let monthWHLastYear = _.map(monthDataLastYear, 'month_WH');
+                    let monthSumWHLastYear = vm.prefixSum(monthWHLastYear);
+
+
+                    console.log(monthSumWHLastYear);
+
+                    let config = {
+                        type: 'line',
+                        data: {
+                            labels: monthLabels,
+                            datasets: [{
+                                label: "Cumulative Consumption This Year",
+                                backgroundColor: 'red',
+                                borderColor: 'red',
+                                data: monthSumWHThisYear,
+                                fill: false,
+                            }, {
+                                label: "Cumulative Consumption Last Year",
+                                fill: false,
+                                backgroundColor: 'blue',
+                                borderColor: 'blue',
+                                data: monthSumWHLastYear,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            title:{
+                                display:true,
+                                text:'Cumulative consumption Trend Chart, this year VS. last year'
+                            },
+                            tooltips: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Month'
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'WH'
+                                    }
+                                }]
+                            },
+                            animation: {
+                                onComplete: function () {
+                                    console.log('hello');
+                                    let chartInstance = this.chart,
+                                        ctx = chartInstance.ctx;
+
+                                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                                    ctx.fillStyle = 'black';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+
+                                    this.data.datasets.forEach(function(dataset, i) {
+                                        let meta = chartInstance.controller.getDatasetMeta(i);
+                                        meta.data.forEach(function (bar, index) {
+                                            let data = dataset.data[index];
+                                            ctx.fillText(data, bar._model.x, bar._model.y);
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    };
+
+                    let ctx2 = document.getElementById("myCompareWithMyself-2").getContext("2d");
+                    window.myLine = new Chart(ctx2, config);
+                },
+
+                prefixSum: function (arr) {
+                    let builder = function (acc, n) {
+                        let lastNum = acc.length > 0 ? acc[acc.length-1] : 0;
+                        acc.push(parseFloat(lastNum) + parseFloat(n));
+                        return acc;
+                    };
+                    return _.reduce(arr, builder, []);
+                }
             }
         })
     </script>

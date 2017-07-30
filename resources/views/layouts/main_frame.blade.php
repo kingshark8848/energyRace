@@ -11,6 +11,8 @@
 
     <title>EnergyRace</title>
 
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
+
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

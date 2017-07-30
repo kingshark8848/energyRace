@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Request;
+
 $app->get('/', function () use ($app) {
 //    return $app->version();
     return redirect('/home');
@@ -22,6 +24,12 @@ $app->get('/home', function () use ($app) {
 });
 
 $app->get('/race', function () use ($app) {
+//    dd(Request::all());
+
+    if (Request::input('nmi')){
+        \App\Utils\MyEnv::setUserId();
+    }
+
     return view('race');
 });
 
@@ -45,5 +53,8 @@ $app->group(['prefix' => 'api/v1'], function () use ($app) {
     $app->get('/me/daily_e_consumption_given_month', 'ApiController@getMyDailyEConsumptionGivenMonth');
 
     $app->get('/me/month_e_consumption_given_year', 'ApiController@getMyMonthEConsumptionGivenYear');
+
+    $app->get('/random_tip', 'ApiController@getRandomTip');
+
 });
 

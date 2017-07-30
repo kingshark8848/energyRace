@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utils\MyEnv;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,14 @@ class ApiController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function getRandomTip()
+    {
+        $tip = DB::select(DB::raw("SELECT * FROM tips ORDER BY RAND() LIMIT 1"))[0];
+
+        return response()->json($tip);
+
     }
 
     /**
@@ -38,7 +47,8 @@ class ApiController extends Controller
             $p_date = config('app.cur_date_str');
         }
 
-        $cur_resident_id = config('app.cur_resident_id');
+//        $cur_resident_id = config('app.cur_resident_id');
+        $cur_resident_id = MyEnv::getUserId();
 
         // init return data
         $data = [];
@@ -91,7 +101,8 @@ class ApiController extends Controller
         else{
             $p_date = config('app.cur_date_str');
         }
-        $cur_resident_id = config('app.cur_resident_id');
+
+        $cur_resident_id = MyEnv::getUserId();
 
         // init return data
         $data = [];
@@ -121,7 +132,8 @@ class ApiController extends Controller
         else{
             $p_date = config('app.cur_date_str');
         }
-        $cur_resident_id = config('app.cur_resident_id');
+
+        $cur_resident_id = MyEnv::getUserId();
 
         // init return data
         $data = [];

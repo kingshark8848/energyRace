@@ -164,7 +164,7 @@
 
                             <p class="congrats" v-if="beat_percent >= 75 ">Congratulation ! &nbsp Yesterday you beat <span class="rating_percent">@{{ beat_percent }} %</span> people nearby.<br/>
                                 (based on your yesterdays' electricity consumption, <b>the less, the better!</b>) <br/>
-                                + 4.5 <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
+                                + @{{ daily_point_earned }} <img class="img-responsive my-coin-with-text" src="img/Coin_0.png">
                             </p>
 
                             <p class="congrats" v-else>
@@ -282,20 +282,31 @@
                 top_persons: [{'key':1,'val': 476, 'rank':1}, {'key':2,'val': 400, 'rank':2}, {'key':3,'val': 532, 'rank':3}],
                 ranking_attr: "val",
                 score_zoom: 1,
+                base_point: 10,
             },
             computed: {
                 beat_percent: function () {
 
                     let vm = this;
 
-                    try{
-                        let dailyRanking = vm.daily_data.cur_day_self.daily_ranking;
-                        let dailyPersonCount = vm.daily_data.person_count;
-                        return ((dailyPersonCount - dailyRanking) / (dailyPersonCount-1) * 100 ).toFixed(2);
+                    return vm.getBeatPercentage();
+
+                },
+
+                daily_point_earned: function () {
+                    let vm = this;
+                    let point;
+
+                    let beat_percent = vm.getBeatPercentage();
+
+                    if (beat_percent<75){
+                        point = 0;
                     }
-                    catch (e){
-                        return 0;
+                    else{
+                        point = (beat_percent / 100 * vm.base_point ).toFixed(1);
                     }
+
+                    return point;
 
                 }
             },
@@ -317,6 +328,19 @@
                 Chart.defaults.global.animation.duration = 2000;
             },
             methods: {
+                getBeatPercentage: function () {
+                    let vm = this;
+
+                    try{
+                        let dailyRanking = vm.daily_data.cur_day_self.daily_ranking;
+                        let dailyPersonCount = vm.daily_data.person_count;
+                        return ((dailyPersonCount - dailyRanking) / (dailyPersonCount-1) * 100 ).toFixed(2);
+                    }
+                    catch (e){
+                        return 0;
+                    }
+                },
+
                 loadPieChart: function () {
 
                     let vm = this;

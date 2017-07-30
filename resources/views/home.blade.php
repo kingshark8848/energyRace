@@ -67,7 +67,7 @@
                         <!--                            <label for="nmi" class="col-lg-2 control-label">Input Your NMI</label>-->
 
                         <div class="col-lg-5 col-lg-offset-3 col-xs-6 col-xs-offset-2">
-                            <input type="text" class="form-control" id="nmi" placeholder="Input Your NMI Code">
+                            <input type="text" class="form-control" name="nmi" id="nmi" placeholder="Input Your NMI Code">
                             <a class="find_nmi" href="http://www.ausgrid.com.au/Common/Customer-Services/Electricity-supply/Blackouts-and-power-restoration/NMIs.aspx#.WXp_lyF96V4" target="_blank">How do I find my NMI?</a>
                         </div>
                         <div class="col-lg-3 col-xs-2 text-left">
@@ -226,8 +226,10 @@
                     <h4 class="modal-title"><img src="img/bulb.png" class="img-rounded" style="display: inline-block;height: 1em">Energy Saving Tips</h4>
                 </div>
                 <div class="modal-body">
-                    <p><span class="text-danger"><b>Do you know</b></span></p>
-                    <p>....</p>
+                    <div id="my-tip-content">
+                        <p>....</p>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close Tip</button>
@@ -242,7 +244,26 @@
     <script>
         $( document ).ready(function() {
             console.log( "ready!" );
-            $('#tip-modal').modal('show');
+
+            $.ajax({
+                method: "GET",
+                url: "/api/v1/random_tip",
+            }).success(function( res ) {
+                console.log(res);
+                $('#my-tip-content').html(
+                    "<p class='text-danger'><b>"+res.title+"</b></p>" +
+                "<blockquote><p style='font-size: medium'>" + res.content + "</p>" +
+                    "<a  href='"+ res.url +"' style='font-size: medium'>check more info</a>" +
+                    "</blockquote>" +
+                "<p class='text-success'>this tip is from origin</p>"
+                );
+
+                $('#tip-modal').modal('show');
+            }).fail(function () {
+                console.log('get tip failed');
+            });
+
+
         });
     </script>
 @endsection

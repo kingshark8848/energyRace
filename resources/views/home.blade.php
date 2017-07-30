@@ -1,5 +1,9 @@
 @extends('layouts.main_frame')
 
+@section('extra_header')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" ></script>
+@endsection
+
 @section('content')
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -44,7 +48,7 @@
                     <div class="intro-text">
                         <h1 class="name">Start EnergyRace</h1>
                         <hr class="star-light">
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                        <span class="skills">Saving Electricity Bill & Compete With Your Neighbours</span>
                     </div>
                 </div>
             </div>
@@ -97,20 +101,31 @@
                     <hr class="star-light">
                 </div>
                 <p>Our project is about electricity consumption ranking system, the main purpose is<br>to encourage customer to save energy.<br><br>What we can see is that the retail price of electricity increase year by year post a burden on financial.</p>
-                <img class="img-responsive" src="???">
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="canvas-holder" style="width:100%; height: 100%; background-color: #ffffff">
+                            <canvas id="myLineChart1"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br/><br/>
                 <p>The number of pollution problems is increasing!</p>
                 <div class="col-md-6 textarea1" width='300' height='300'>
                     <br>
                     <font color = "#FF0000" size="10">3 m<sup>2</sup></sup><br></font>
                     <font color = "#000000" size="4" >of sea ice disappear for every<br></font>
-                    <font color = "#FF0000" size="10">1 tonnne<br></font>
+                    <font color = "#FF0000" size="10">1 tones<br></font>
                     <font color = "#000000" size="4">of CO<sup>2</sup> emitted<br></font>
                 </div>
 
                 <div class="col-md-6 textarea2" width='300' height='300'>
                     <br>
-                    <font color = "#000000" size="4">Globally, we emit<br></font>
-                    <font color = "#000000" size="10">35 billion tonnes<br></font>
+                    <font color = "#000000" size="4">In QLD, we emit<br></font>
+                    <font color = "#000000" size="10">4.2 billion tones<br></font>
                     <font color = "#000000" size="4">of CO<sup>2</sup> each year<br></font>
                 </div>
             </div>
@@ -261,6 +276,86 @@
             }).fail(function () {
                 console.log('get tip failed');
             });
+
+            // =================== line chart
+            let config = {
+                type: 'line',
+                data: {
+                    labels: [2005, 2006, 2007, 2008, 2009, 2010, 2011,2012,2013,2014 ],
+                    datasets: [{
+                        label: "My First dataset",
+                        backgroundColor: 'red',
+                        borderColor: 'red',
+                        data: [
+                            0.1227,
+                            0.1262,
+                            0.1405,
+                            0.1481,
+                            0.1713,
+                            0.1941,
+                            0.2069,
+                            0.2307,
+                            0.2673,
+                            0.2538,
+                        ],
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title:{
+                        display:true,
+                        text:'Electricity Tariff Price Increasing Trend of QLD'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'KWH'
+                            }
+                        }]
+                    },
+                    animation: {
+                        onComplete: function () {
+                            console.log('hello');
+                            let chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.fillStyle = 'black';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function(dataset, i) {
+                                let meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    let data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y);
+                                });
+                            });
+                        }
+                    }
+                }
+            };
+
+            let ctx2 = document.getElementById("myLineChart1").getContext("2d");
+            window.myLine = new Chart(ctx2, config);
 
 
         });

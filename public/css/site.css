@@ -156,3 +156,17 @@ td{
 .my-hr {
     border: double;
 }
+
+.textarea1{
+    text-align: center;
+    border: 3px solid black;
+    width:300px;
+    height:230px;
+    margin-right:100px;
+}
+.textarea2{
+    text-align: center;
+    border: 3px solid red;
+    width:300px;
+    height:230px;
+}
